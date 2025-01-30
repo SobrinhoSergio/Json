@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Imóvel</title>
+    <link rel="stylesheet" href="cadastrar.css">
+    <script src="cadastrar.js" defer></script>
+</head>
+<body>
+    <h1>Cadastrar Imóvel</h1>
+    <form id="form-cadastro">
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" required><br>
+
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+            <option value="">Selecione o Estado</option>
+            <option value="Rio de Janeiro">Rio de Janeiro</option>
+            <!-- Adicione outros estados aqui -->
+        </select><br>
+
+        <label for="cidade">Cidade:</label>
+        <select id="cidade" name="cidade" required>
+            <option value="">Selecione a Cidade</option>
+            <!-- As cidades serão preenchidas via JS -->
+        </select><br>
+
+        <label for="corretor">Corretor:</label>
+        <input type="text" id="corretor" name="corretor" required><br>
+
+        <label for="proprietario">Proprietário:</label>
+        <input type="text" id="proprietario" name="proprietario" required><br>
+
+        <label for="valor">Valor:</label>
+        <input type="number" id="valor" name="valor" required><br>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,32 @@
+{
+  "produtos": [
+    {
+      "nome": "Teste",
+      "fabricante": "FarmaTech",
+      "preco": 33,
+      "tipo": "Quilo",
+      "id": 3
+    },
+    {
+      "nome": "Tets",
+      "fabricante": "FarmaTech",
+      "preco": 1212,
+      "tipo": "Caixa",
+      "id": 4
+    },
+    {
+      "nome": "Tets",
+      "fabricante": "BioSaúde",
+      "preco": 99999,
+      "tipo": "Unidade",
+      "id": 5
+    },
+    {
+      "nome": "clonazepan",
+      "fabricante": "MedPharma",
+      "preco": 56,
+      "tipo": "Caixa",
+      "id": 6
+    }
+  ]
+}

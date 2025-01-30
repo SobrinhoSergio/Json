@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imóveis</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="listar-imoveis.js" defer></script>
+</head>
+<body>
+    <a href="cadastrar.html">Cadastrar</a>
+    <h1>Imóveis</h1>
+    <div>
+        <label for="estado">Estado:</label>
+        <select id="estado">
+            <option value="">Selecione o estado</option>
+        </select>
+        
+        <label for="cidade">Cidade:</label>
+        <select id="cidade" disabled>
+            <option value="">Selecione a cidade</option>
+        </select>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Endereço</th>
+                <th>Corretor</th>
+                <th>Proprietário</th>
+                <th>Valor</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>

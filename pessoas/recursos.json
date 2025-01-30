@@ -1,0 +1,187 @@
+{
+    "pessoas": [
+        {
+          "nome": "Ana Clara",
+          "telefone": "(11) 91234-5678",
+          "cidade": "São Paulo",
+          "estado": "SP"
+        },
+        {
+          "nome": "João Pedro",
+          "telefone": "(21) 98765-4321",
+          "cidade": "Rio de Janeiro",
+          "estado": "RJ"
+        },
+        {
+          "nome": "Mariana Silva",
+          "telefone": "(31) 99876-5432",
+          "cidade": "Belo Horizonte",
+          "estado": "MG"
+        },
+        {
+          "nome": "Lucas Oliveira",
+          "telefone": "(41) 95432-1876",
+          "cidade": "Curitiba",
+          "estado": "PR"
+        },
+        {
+          "nome": "Beatriz Santos",
+          "telefone": "(71) 99654-3218",
+          "cidade": "Salvador",
+          "estado": "BA"
+        },
+        {
+          "nome": "Rafael Costa",
+          "telefone": "(51) 92345-6789",
+          "cidade": "Porto Alegre",
+          "estado": "RS"
+        },
+        {
+          "nome": "Larissa Almeida",
+          "telefone": "(85) 91234-5678",
+          "cidade": "Fortaleza",
+          "estado": "CE"
+        },
+        {
+          "nome": "Pedro Henrique",
+          "telefone": "(62) 99887-6543",
+          "cidade": "Goiânia",
+          "estado": "GO"
+        },
+        {
+          "nome": "Isabela Rocha",
+          "telefone": "(27) 98765-4321",
+          "cidade": "Vitória",
+          "estado": "ES"
+        },
+        {
+          "nome": "Carlos Eduardo",
+          "telefone": "(81) 99999-8888",
+          "cidade": "Recife",
+          "estado": "PE"
+        },
+        {
+          "nome": "Fernanda Lima",
+          "telefone": "(98) 98888-7777",
+          "cidade": "São Luís",
+          "estado": "MA"
+        },
+        {
+          "nome": "Gabriel Souza",
+          "telefone": "(92) 98777-6666",
+          "cidade": "Manaus",
+          "estado": "AM"
+        },
+        {
+          "nome": "Juliana Moreira",
+          "telefone": "(69) 97766-5555",
+          "cidade": "Porto Velho",
+          "estado": "RO"
+        },
+        {
+          "nome": "Thiago Fernandes",
+          "telefone": "(96) 96655-4444",
+          "cidade": "Macapá",
+          "estado": "AP"
+        },
+        {
+          "nome": "Alice Figueiredo",
+          "telefone": "(68) 95444-3333",
+          "cidade": "Rio Branco",
+          "estado": "AC"
+        },
+        {
+          "nome": "Mateus Ribeiro",
+          "telefone": "(63) 94333-2222",
+          "cidade": "Palmas",
+          "estado": "TO"
+        },
+        {
+          "nome": "Amanda Nunes",
+          "telefone": "(95) 93222-1111",
+          "cidade": "Boa Vista",
+          "estado": "RR"
+        },
+        {
+          "nome": "Felipe Alves",
+          "telefone": "(82) 92111-0000",
+          "cidade": "Maceió",
+          "estado": "AL"
+        },
+        {
+          "nome": "Camila Martins",
+          "telefone": "(73) 95432-1987",
+          "cidade": "Ilhéus",
+          "estado": "BA"
+        },
+        {
+          "nome": "André Luiz",
+          "telefone": "(67) 92345-8765",
+          "cidade": "Campo Grande",
+          "estado": "MS"
+        },
+        {
+          "nome": "Sophia Carvalho",
+          "telefone": "(77) 98765-1234",
+          "cidade": "Barreiras",
+          "estado": "BA"
+        },
+        {
+          "nome": "Diego Pereira",
+          "telefone": "(79) 95432-6543",
+          "cidade": "Aracaju",
+          "estado": "SE"
+        },
+        {
+          "nome": "Eduarda Mendes",
+          "telefone": "(83) 97654-7890",
+          "cidade": "João Pessoa",
+          "estado": "PB"
+        },
+        {
+          "nome": "Victor Gomes",
+          "telefone": "(86) 93234-5678",
+          "cidade": "Teresina",
+          "estado": "PI"
+        },
+        {
+          "nome": "Manuela Vieira",
+          "telefone": "(84) 93456-7812",
+          "cidade": "Natal",
+          "estado": "RN"
+        },
+        {
+          "nome": "Henrique Barbosa",
+          "telefone": "(65) 94567-1234",
+          "cidade": "Cuiabá",
+          "estado": "MT"
+        },
+        {
+          "nome": "Paula Castro",
+          "telefone": "(66) 98765-4321",
+          "cidade": "Rondonópolis",
+          "estado": "MT"
+        },
+        {
+          "nome": "Rodrigo Lima",
+          "telefone": "(89) 94321-0987",
+          "cidade": "Picos",
+          "estado": "PI"
+        },
+        {
+          "nome": "Elaine Cardoso",
+          "telefone": "(88) 97654-1234",
+          "cidade": "Sobral",
+          "estado": "CE"
+        },
+        {
+          "nome": "Samuel Torres",
+          "telefone": "(94) 93210-8765",
+          "cidade": "Marabá",
+          "estado": "PA"
+        }
+      ]
+   
+         
+      
+}

@@ -6,6 +6,13 @@
       "fabricante": "Bayer",
       "tipoUnidade": "unidade",
       "id": 1
+    },
+    {
+      "nome": "Dipirona",
+      "preco": "99",
+      "fabricante": "Bayer",
+      "tipoUnidade": "quilo",
+      "id": 2
     }
   ],
   "vendas": [
@@ -20,6 +27,18 @@
       ],
       "dataVenda": "2025-02-02T00:34:05.940Z",
       "id": 1
+    },
+    {
+      "vendedor": "1",
+      "produtos": [
+        {
+          "idProduto": 2,
+          "subTotal": "7524.00",
+          "quantidade": 76
+        }
+      ],
+      "dataVenda": "2025-02-02T00:50:40.460Z",
+      "id": 2
     }
   ]
 }

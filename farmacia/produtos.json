@@ -27,6 +27,13 @@
       "preco": 56,
       "tipo": "Caixa",
       "id": 6
+    },
+    {
+      "nome": "clonazepan",
+      "fabricante": "FarmaTech",
+      "preco": 90,
+      "tipo": "Caixa",
+      "id": 7
     }
   ]
 }

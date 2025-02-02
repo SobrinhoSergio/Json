@@ -91,7 +91,7 @@ function atualizarEstatisticas(produtos) {
     const media = total / precos.length;
     const maisCaro = Math.max(...precos);
     const maisBarato = Math.min(...precos);
-a
+
     const tr = document.createElement('tr');
 
     const tdLabel = document.createElement('td');

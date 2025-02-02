@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda</title>
+    <script src="./venda.js"></script>
+</head>
+<body>
+
+    <form id="formVenda" method="post">
+        <label for="vendedor">Vendedor:</label>
+        <select id="vendedor" name="vendedor">
+            <option value=""> --- SELECIONE O VENDEDOR --- </option>
+            <option value="1">Vendedor 1</option>
+            <option value="2">Vendedor 2</option>
+            <option value="3">Vendedor 3</option>
+        </select>
+
+        <div id="oculta">
+
+            <label for="produto">Produto:</label>
+            <select id="produto" name="produto">
+                <option value=""> --- SELECIONE O PRODUTO --- </option>
+                 </select>
+            <br>
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" name="quantidade" id="quantidade">
+            <br>        
+            <button id="addProduto" type="button">Adicionar Produto</button>
+        </div>
+        
+    </form>
+    <br/>
+    <div id="produtosAdicionados">
+        <table id="tabelaProdutos">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total</td>
+                    <td id="totalCompra">0</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <input type="button" id="finalizarCompra" value="Finalizar Compra">
+</body>
+</html>

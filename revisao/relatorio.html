@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório</title>
+    <script src="./relatorio.js"></script>
+</head>
+<body>
+    <form id="formRelatorio">
+        <label for="produto">Escolha o Produto</label>
+        <select id="produto" name="produto">
+            <option value=""> --- SELECIONE O PRODUTO --- </option>
+        </select>
+    </form>
+    <table id="tabelaVendasProduto">
+        <thead>
+            <tr>
+                <th>Vendedor</th>
+                <th>Quantidade</th>
+                <th>Subtotal</th>
+                <th>Data Venda</th>
+            </tr></thead><tbody></tbody><tfoot><tr><td colspan="4">Total</td><td id="presentesEmVendas">0</td></tr></tfoot>
+    </table>
+</body>
+</html>

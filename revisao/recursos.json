@@ -1,0 +1,25 @@
+{
+  "produtos": [
+    {
+      "nome": "Dipirona",
+      "preco": "22",
+      "fabricante": "Bayer",
+      "tipoUnidade": "unidade",
+      "id": 1
+    }
+  ],
+  "vendas": [
+    {
+      "vendedor": "1",
+      "produtos": [
+        {
+          "idProduto": 1,
+          "subTotal": "1958.00",
+          "quantidade": 89
+        }
+      ],
+      "dataVenda": "2025-02-02T00:34:05.940Z",
+      "id": 1
+    }
+  ]
+}

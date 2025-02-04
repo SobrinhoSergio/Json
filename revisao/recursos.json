@@ -1,18 +1,25 @@
 {
   "produtos": [
     {
-      "nome": "Dipirona",
+      "nome": "Belzoldina",
+      "preco": "32.90",
+      "fabricante": "Cloroquina",
+      "tipoUnidade": "litro",
+      "id": 2
+    },
+    {
+      "nome": "Teste 1",
       "preco": "22",
       "fabricante": "Bayer",
       "tipoUnidade": "unidade",
       "id": 1
     },
     {
-      "nome": "Dipirona",
+      "nome": "Teste 2",
       "preco": "99",
       "fabricante": "Bayer",
       "tipoUnidade": "quilo",
-      "id": 2
+      "id": 3
     }
   ],
   "vendas": [
@@ -39,6 +46,35 @@
       ],
       "dataVenda": "2025-02-02T00:50:40.460Z",
       "id": 2
+    },
+    {
+      "vendedor": "3",
+      "produtos": [
+        {
+          "idProduto": 2,
+          "subTotal": "2566.20",
+          "quantidade": 78
+        },
+        {
+          "idProduto": 2,
+          "subTotal": "2566.20",
+          "quantidade": 78
+        }
+      ],
+      "dataVenda": "2025-02-04T22:04:21.897Z",
+      "id": 3
+    },
+    {
+      "vendedor": "3",
+      "produtos": [
+        {
+          "idProduto": 1,
+          "subTotal": "44.00",
+          "quantidade": 2
+        }
+      ],
+      "dataVenda": "2025-02-04T22:14:20.336Z",
+      "id": 4
     }
   ]
 }

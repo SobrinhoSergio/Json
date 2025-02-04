@@ -1,0 +1,6 @@
+npx json-server --watch recursos.json
+
+{
+  "produtos": [],
+  "vendas": []
+}

@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', (ev) => {
     document.getElementById("btnCadastrar")?.addEventListener('click', async (ev) => {
+        ev.preventDefault();
+
         var form = new FormData(document.getElementById("formCadastro"));
         if (validaCampos(form)) {
-            //console.log("Antes await");
-            cadastrarProduto(form);
-            //console.log(produto);
-            //console.log("Depois do depois await");
+            await cadastrarProduto(form);
         }
-        ev.preventDefault();
     });
+
+    carregarProdutosDoLocalStorage();
 });
 
 function validaCampos(form) {
@@ -24,13 +24,11 @@ function validaCampos(form) {
     Object.keys(regras).forEach(campo => {
         let valor = form.get(campo)?.toString().trim();
 
-        // Verifica se o campo é obrigatório e está vazio
         if (!valor) {
             erros.push(`Campo ${campo} é obrigatório.`);
             return;
         }
 
-        // Verifica limites de caracteres
         if (regras[campo].min && valor.length < regras[campo].min) {
             erros.push(regras[campo].mensagem);
         }
@@ -39,7 +37,6 @@ function validaCampos(form) {
             erros.push(regras[campo].mensagem);
         }
 
-        // Validação específica para preço (deve ser número e dentro do limite)
         if (campo === "preco" && (isNaN(valor) || parseFloat(valor) > regras.preco.max)) {
             erros.push(regras.preco.mensagem);
         }
@@ -50,27 +47,38 @@ function validaCampos(form) {
     return erros.length === 0;
 }
 
-
-
 async function cadastrarProduto(produto) {
     try {
+        const produtoObj = Object.fromEntries(produto);
+        salvarProdutoNoLocalStorage(produtoObj);
+
         const response = await fetch('http://localhost:3000/produtos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(Object.fromEntries(produto)),
+            body: JSON.stringify(produtoObj),
         });
 
         if (!response.ok) {
             throw new Error(`Erro ao cadastrar produto: ${response.statusText}`);
         }
 
-        const data = await response.json();
-        //setTimeout(()=>{}, 2000);
-        console.log("Dentro da funcao async");
         alert('Produto cadastrado com sucesso');
     } catch (error) {
         console.error('Erro ao cadastrar produto:', error);
     }
+}
+
+function salvarProdutoNoLocalStorage(produto) {
+    let produtos = JSON.parse(localStorage.getItem("produtosTeste")) || [];
+    produtos.push(produto);
+    localStorage.setItem("produtosTeste", JSON.stringify(produtos));
+}
+
+function carregarProdutosDoLocalStorage() {
+    let produtos = JSON.parse(localStorage.getItem("produtosTeste")) || [];
+    produtos.forEach(produto => {
+        console.log("Produto carregado do LocalStorage:", produto);
+    });
 }

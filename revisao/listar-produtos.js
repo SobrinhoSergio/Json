@@ -23,8 +23,12 @@ async function listarProdutos() {
 
 async function removerProduto(id) {
     try {
+        // Remover produto da API
         const response = await fetch(`http://localhost:3000/produtos/${id}`, { method: 'DELETE' });
         if (!response.ok) throw new Error(`Erro ao excluir: ${response.statusText}`);
+
+        // Remover produto do localStorage
+        removerProdutoDoLocalStorage(id);
 
         alert("Produto excluído com sucesso!");
         document.getElementById(`linhaProduto${id}`)?.remove();
@@ -88,4 +92,10 @@ function atualizarEstatisticas(precos = []) {
 function atualizarElemento(id, valor) {
     const elemento = document.getElementById(id);
     if (elemento) elemento.textContent = valor.toFixed(2);
+}
+
+function removerProdutoDoLocalStorage(id) {
+    let produtos = JSON.parse(localStorage.getItem("produtosTeste")) || [];
+    produtos = produtos.filter(produto => produto.id !== id);  // Remove o produto do array
+    localStorage.setItem("produtosTeste", JSON.stringify(produtos));  // Salva a lista atualizada
 }

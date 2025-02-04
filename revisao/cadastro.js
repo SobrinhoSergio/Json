@@ -12,21 +12,45 @@ document.addEventListener('DOMContentLoaded', (ev) => {
 });
 
 function validaCampos(form) {
-    let campos = ["nome", "preco", "fabricante", "tipoUnidade"];
-    let valido = true;
-    let informacoes = "";
+    let erros = [];
 
-    campos.forEach((campo) => {
-        if (!form.has(campo) || form.get(campo)?.toString().trim() == "") {
-            valido = false;
-            informacoes += `Campo ${campo} não foi preenchido\n`;
+    const regras = {
+        nome: { min: 3, max: 80, obrigatorio: true, mensagem: "Nome deve ter entre 3 e 80 caracteres." },
+        preco: { max: 9999.99, obrigatorio: true, mensagem: "Preço deve ser um número válido até 9999.99." },
+        fabricante: { min: 2, max: 50, obrigatorio: true, mensagem: "Fabricante deve ter entre 2 e 50 caracteres." },
+        tipoUnidade: { obrigatorio: true, mensagem: "Tipo de unidade deve ser preenchido." }
+    };
+
+    Object.keys(regras).forEach(campo => {
+        let valor = form.get(campo)?.toString().trim();
+
+        // Verifica se o campo é obrigatório e está vazio
+        if (!valor) {
+            erros.push(`Campo ${campo} é obrigatório.`);
+            return;
+        }
+
+        // Verifica limites de caracteres
+        if (regras[campo].min && valor.length < regras[campo].min) {
+            erros.push(regras[campo].mensagem);
+        }
+
+        if (regras[campo].max && valor.length > regras[campo].max) {
+            erros.push(regras[campo].mensagem);
+        }
+
+        // Validação específica para preço (deve ser número e dentro do limite)
+        if (campo === "preco" && (isNaN(valor) || parseFloat(valor) > regras.preco.max)) {
+            erros.push(regras.preco.mensagem);
         }
     });
-    if (informacoes != "") {
-        alert(informacoes);
-    }
-    return valido;
+
+    if (erros.length) alert(erros.join("\n"));
+
+    return erros.length === 0;
 }
+
+
 
 async function cadastrarProduto(produto) {
     try {

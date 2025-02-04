@@ -20,6 +20,13 @@
       "fabricante": "Bayer",
       "tipoUnidade": "quilo",
       "id": 3
+    },
+    {
+      "nome": "Ana",
+      "preco": "9",
+      "fabricante": "Júlio",
+      "tipoUnidade": "unidade",
+      "id": 4
     }
   ],
   "vendas": [

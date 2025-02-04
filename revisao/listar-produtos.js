@@ -1,93 +1,91 @@
-document.addEventListener('DOMContentLoaded', async (ev) => { 
+document.addEventListener('DOMContentLoaded', async () => { 
     await listarProdutos();
 });
 
 async function listarProdutos() {
     try {
         const response = await fetch('http://localhost:3000/produtos');
-        if (!response.ok) {
-            throw new Error(`Erro ao carregar produtos: ${response.statusText}`);
-        }
-        const data = await response.json();
-        let total = 0;
-        let maior = -Infinity;
-        let menor = Infinity;
-        
-        data.forEach((produto) => {
-            adicionaProdutoTabela2(produto);
-            let preco = parseFloat(produto.preco);
-            total += preco;
-            if (preco > maior) maior = preco;
-            if (preco < menor) menor = preco;
-        });
+        if (!response.ok) throw new Error(`Erro ao carregar produtos: ${response.statusText}`);
 
-        let media = data.length > 0 ? total / data.length : 0;
-        atualizarEstatisticas(total, maior, menor, media);
+        const produtos = await response.json();
+        let precos = produtos.map(produto => parseFloat(produto.preco) || 0);
+
+        // Adiciona produtos na tabela
+        produtos.forEach(adicionaProdutoTabela);
+
+        // Atualiza estatísticas
+        atualizarEstatisticas(precos);
     } catch (error) {
-        console.error('Erro ao carregar produtos:', error);
+        console.error(error);
+        alert("Erro ao carregar produtos.");
     }
 }
 
-async function removerProduto(produto, idLinhaARemover) {
+async function removerProduto(id) {
     try {
-        const response = await fetch('http://localhost:3000/produtos/' + produto.id, {
-            method: 'DELETE'
-        });
-        if (!response.ok) {
-            throw new Error(`Erro ao excluir: ${response.statusText}`);
-        }
+        const response = await fetch(`http://localhost:3000/produtos/${id}`, { method: 'DELETE' });
+        if (!response.ok) throw new Error(`Erro ao excluir: ${response.statusText}`);
+
         alert("Produto excluído com sucesso!");
-        document.getElementById(idLinhaARemover)?.remove();
-        atualizarEstatisticas(); // Atualiza estatísticas após remoção
+        document.getElementById(`linhaProduto${id}`)?.remove();
+        atualizarEstatisticas(); // Recalcula estatísticas
     } catch (error) {
-        console.error('Erro ao excluir produto:', error);
+        console.error(error);
+        alert("Erro ao excluir produto.");
     }
 }
 
-async function adicionaProdutoTabela2(produto) {
-    document.getElementById("tabelaProdutosLista")?.querySelectorAll("tbody").forEach((corpoTabela) => {
-        var linha = document.createElement("tr");
-        linha.id = "linhaTabelaProduto" + produto.id;
-        var colunaNome = document.createElement("td");
-        colunaNome.textContent = produto.nome;
-        var colunaPreco = document.createElement("td");
-        colunaPreco.textContent = produto.preco;
-        var colunaFabricante = document.createElement("td");
-        colunaFabricante.textContent = produto.fabricante;
-        var colunaRemover = document.createElement("td");
-        var link = document.createElement("a");
-        link.addEventListener('click', (ev) => {
-            removerProduto(produto, "linhaTabelaProduto" + produto.id);
-        });
-        link.textContent = "Remover";
-        link.href = "#";
-        colunaRemover.appendChild(link);
-        linha.appendChild(colunaNome);
-        linha.appendChild(colunaPreco);
-        linha.appendChild(colunaFabricante);
-        linha.appendChild(colunaRemover);
-        corpoTabela.appendChild(linha);
-    });
+function adicionaProdutoTabela(produto) {
+    const tbody = document.querySelector("#tabelaProdutosLista tbody");
+    if (!tbody) return;
 
-    atualizarEstatisticas(); // Atualiza estatísticas após adicionar produto
+    const linha = document.createElement("tr");
+    linha.id = `linhaProduto${produto.id}`;
+
+    const colunaNome = document.createElement("td");
+    colunaNome.textContent = produto.nome;
+
+    const colunaPreco = document.createElement("td");
+    colunaPreco.textContent = produto.preco;
+
+    const colunaFabricante = document.createElement("td");
+    colunaFabricante.textContent = produto.fabricante;
+
+    const colunaRemover = document.createElement("td");
+    const linkRemover = document.createElement("a");
+    linkRemover.textContent = "Remover";
+    linkRemover.href = "#";
+    linkRemover.addEventListener("click", () => removerProduto(produto.id));
+    colunaRemover.appendChild(linkRemover);
+
+    linha.appendChild(colunaNome);
+    linha.appendChild(colunaPreco);
+    linha.appendChild(colunaFabricante);
+    linha.appendChild(colunaRemover);
+
+    tbody.appendChild(linha);
+    atualizarEstatisticas(); // Atualiza estatísticas ao adicionar produto
 }
 
-function atualizarEstatisticas(total = 0, maior = 0, menor = 0, media = 0) {
-    let precos = [];
-    document.querySelectorAll("#tabelaProdutosLista tbody tr").forEach((linha) => {
-        let preco = parseFloat(linha.children[1].textContent) || 0;
-        precos.push(preco);
-    });
-
-    if (precos.length > 0) {
-        total = precos.reduce((acc, val) => acc + val, 0);
-        maior = Math.max(...precos);
-        menor = Math.min(...precos);
-        media = total / precos.length;
+function atualizarEstatisticas(precos = []) {
+    if (precos.length === 0) {
+        precos = [...document.querySelectorAll("#tabelaProdutosLista tbody tr")]
+            .map(linha => parseFloat(linha.children[1].textContent) || 0);
     }
 
-    document.getElementById("totalProdutos").textContent = total.toFixed(2);
-    document.getElementById("maiorPreco").textContent = maior.toFixed(2);
-    document.getElementById("menorPreco").textContent = menor.toFixed(2);
-    document.getElementById("mediaPreco").textContent = media.toFixed(2);
+    const total = precos.reduce((acc, val) => acc + val, 0);
+    const maior = Math.max(...precos, 0);
+    const menor = Math.min(...precos, Infinity);
+    const media = precos.length > 0 ? total / precos.length : 0;
+
+    // Atualiza valores na tela
+    atualizarElemento("totalProdutos", total);
+    atualizarElemento("maiorPreco", maior);
+    atualizarElemento("menorPreco", menor);
+    atualizarElemento("mediaPreco", media);
+}
+
+function atualizarElemento(id, valor) {
+    const elemento = document.getElementById(id);
+    if (elemento) elemento.textContent = valor.toFixed(2);
 }

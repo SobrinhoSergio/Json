@@ -75,6 +75,18 @@
       ],
       "dataVenda": "2025-02-04T22:14:20.336Z",
       "id": 4
+    },
+    {
+      "vendedor": "1",
+      "produtos": [
+        {
+          "idProduto": 2,
+          "subTotal": "756.70",
+          "quantidade": 23
+        }
+      ],
+      "dataVenda": "2025-02-04T23:34:07.660Z",
+      "id": 5
     }
   ]
 }

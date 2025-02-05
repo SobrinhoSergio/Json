@@ -114,15 +114,34 @@ function atualizarEstatisticas(produtos) {
     tfoot.appendChild(tr);
 }
 
-function deletarProduto(id) {
-    fetch(`http://localhost:3000/produtos/${id}`, { method: 'DELETE' })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao deletar produto.');
-            }
-            return consultarProdutos();
-        })
-        .catch(erro => console.error('Erro:', erro.message));
+async function deletarProduto(id) {
+    try {
+        // Deletar do servidor (simulando a remoção no backend)
+        const response = await fetch(`http://localhost:3000/produtos/${id}`, { method: 'DELETE' });
+        
+        if (!response.ok) {
+            throw new Error('Erro ao deletar produto.');
+        }
+
+        // Após a exclusão no servidor, removemos do localStorage
+        let produtosNoLocalStorage = JSON.parse(localStorage.getItem('produtos')) || [];
+        
+        // Encontrar o índice do produto com o id correspondente
+        const index = produtosNoLocalStorage.findIndex(produto => produto.id === id);
+        
+        // Se o produto existir, removemos do array
+        if (index !== -1) {
+            produtosNoLocalStorage.splice(index, 1);
+            localStorage.setItem('produtos', JSON.stringify(produtosNoLocalStorage));
+        }
+
+        // Atualizar a lista de produtos na página
+        await consultarProdutos();
+
+    } catch (erro) {
+        console.error('Erro:', erro.message);
+    }
 }
+
 
 document.addEventListener('DOMContentLoaded', consultarProdutos);

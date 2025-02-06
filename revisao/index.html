@@ -8,6 +8,17 @@
     <script src="./listar-produtos.js"></script>
 </head>
 <body>
+
+    <div>
+        <label for="filtroNome">Filtrar por nome:</label>
+        <input type="text" id="filtroNome" placeholder="Digite o nome do produto">
+        <label for="filtroFabricante">Filtrar por fabricante:</label>
+        <select id="filtroFabricante">
+            <option value="">Todos os fabricantes</option>
+        </select>
+        <button id="aplicarFiltros">Aplicar filtros</button>
+    </div>
+
     <form id="formEditar" action="cadastro.html">  
         <input type = "hidden" id = "idProduto" name = "idProduto">
     </form>
@@ -17,7 +28,7 @@
                 <th>Nome</th>
                 <th>Preço</th>
                 <th>Fabricante</th>
-                <th>Ação</th>
+                <th colspan="2">Ação</th>
             </tr>
         </thead>
         <tbody>

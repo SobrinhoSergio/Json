@@ -2,17 +2,17 @@
   "produtos": [
     {
       "id": 3,
-      "nome": "Teste 2",
+      "nome": "Sérgio",
       "preco": "1",
       "fabricante": "Bayer",
       "tipoUnidade": "litro"
     },
     {
       "id": 4,
-      "nome": "teste LocaStorage",
-      "preco": "3",
-      "fabricante": "Alterdata",
-      "tipoUnidade": "unidade"
+      "nome": "teste Sei lá",
+      "preco": "707",
+      "fabricante": "Serjola Test",
+      "tipoUnidade": "caixa"
     }
   ],
   "vendas": [

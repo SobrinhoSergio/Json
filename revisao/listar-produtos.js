@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', async () => { 
+document.addEventListener('DOMContentLoaded', async () => {
     await listarProdutos();
+    document.getElementById('aplicarFiltros').addEventListener('click', aplicarFiltros);
 });
 
 async function listarProdutos() {
@@ -9,11 +10,55 @@ async function listarProdutos() {
             throw new Error(`Erro ao carregar produtos: ${response.statusText}`);
         }
         const data = await response.json();
+        preencherFabricantes(data);
         data.forEach(produto => {
             adicionaProdutoTabela(produto);
         });
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
+    }
+}
+
+function preencherFabricantes(produtos) {
+    const selectFabricante = document.getElementById('filtroFabricante');
+    const fabricantes = Array.from(new Set(produtos.map(produto => produto.fabricante)));
+    fabricantes.forEach(fabricante => {
+        const option = document.createElement('option');
+        option.value = fabricante;
+        option.textContent = fabricante;
+        selectFabricante.appendChild(option);
+    });
+}
+
+async function aplicarFiltros() {
+    const nomeFiltro = document.getElementById('filtroNome').value.toLowerCase();
+    const fabricanteFiltro = document.getElementById('filtroFabricante').value;
+
+    // Limpar a tabela
+    const corpoTabela = document.getElementById('tabelaProdutosLista').querySelector('tbody');
+    corpoTabela.innerHTML = '';
+
+    try {
+        const response = await fetch('http://localhost:3000/produtos');
+        if (!response.ok) {
+            throw new Error(`Erro ao carregar produtos: ${response.statusText}`);
+        }
+        const data = await response.json();
+
+        // Filtrando os produtos
+        const produtosFiltrados = data.filter(produto => {
+            const nomeMatch = produto.nome.toLowerCase().includes(nomeFiltro);
+            const fabricanteMatch = fabricanteFiltro ? produto.fabricante === fabricanteFiltro : true;
+            return nomeMatch && fabricanteMatch;
+        });
+
+        // Adicionando os produtos filtrados à tabela
+        produtosFiltrados.forEach(produto => {
+            adicionaProdutoTabela(produto);
+        });
+        atualizarEstatisticas();
+    } catch (error) {
+        console.error('Erro ao aplicar filtros:', error);
     }
 }
 

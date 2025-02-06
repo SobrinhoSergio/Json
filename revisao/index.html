@@ -8,6 +8,9 @@
     <script src="./listar-produtos.js"></script>
 </head>
 <body>
+    <form id="formEditar" action="cadastro.html">  
+        <input type = "hidden" id = "idProduto" name = "idProduto">
+    </form>
     <table id="tabelaProdutosLista">
         <thead>
             <tr>
@@ -21,10 +24,10 @@
 
         </tbody>
         <tfoot>
-            <tr><td colspan="3">Total</td><td id="totalProdutos">0</td></tr>
-            <tr><td colspan="3">Maior Preço</td><td id="maiorPreco">0</td></tr>
-            <tr><td colspan="3">Menor Preço</td><td id="menorPreco">0</td></tr>
-            <tr><td colspan="3">Média</td><td id="mediaPreco">0</td></tr>
+            <tr><td colspan="4">Total</td><td id="totalProdutos">0</td></tr>
+            <tr><td colspan="4">Maior Preço</td><td id="maiorPreco">0</td></tr>
+            <tr><td colspan="4">Menor Preço</td><td id="menorPreco">0</td></tr>
+            <tr><td colspan="4">Média</td><td id="mediaPreco">0</td></tr>
         </tfoot>
         
     </table>

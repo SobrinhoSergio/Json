@@ -1,10 +1,21 @@
 document.addEventListener('DOMContentLoaded', (ev) => {
+    if (window.location.search.includes("idProduto=")) {
+        const idProduto = new URLSearchParams(window.location.search).get("idProduto");
+        if (idProduto) recuperaDadosProduto(idProduto);
+    }
+
     document.getElementById("btnCadastrar")?.addEventListener('click', async (ev) => {
         ev.preventDefault();
 
         var form = new FormData(document.getElementById("formCadastro"));
+        const campoId = document.getElementById("idProduto");
+
         if (validaCampos(form)) {
-            await cadastrarProduto(form);
+            if (campoId?.value) {
+                cadastrarEditarProduto(form, "editar");
+            } else {
+                cadastrarEditarProduto(form, "cadastrar");
+            }
         }
     });
 
@@ -13,7 +24,7 @@ document.addEventListener('DOMContentLoaded', (ev) => {
 
 function validaCampos(form) {
     let erros = [];
-
+    
     const regras = {
         nome: { min: 3, max: 80, obrigatorio: true, mensagem: "Nome deve ter entre 3 e 80 caracteres." },
         preco: { max: 9999.99, obrigatorio: true, mensagem: "Preço deve ser um número válido até 9999.99." },
@@ -47,13 +58,18 @@ function validaCampos(form) {
     return erros.length === 0;
 }
 
-async function cadastrarProduto(produto) {
+async function cadastrarEditarProduto(produto, operacao) {
     try {
         const produtoObj = Object.fromEntries(produto);
-        salvarProdutoNoLocalStorage(produtoObj);
+        if (operacao === "cadastrar") {
+            salvarProdutoNoLocalStorage(produtoObj);
+        }
 
-        const response = await fetch('http://localhost:3000/produtos', {
-            method: 'POST',
+        const url = `http://localhost:3000/produtos${operacao === "editar" ? '/' + produtoObj.id : ''}`;
+        const method = operacao === "editar" ? 'PUT' : 'POST';
+
+        const response = await fetch(url, {
+            method,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -61,13 +77,36 @@ async function cadastrarProduto(produto) {
         });
 
         if (!response.ok) {
-            throw new Error(`Erro ao cadastrar produto: ${response.statusText}`);
+            throw new Error(`Erro ao ${operacao} produto: ${response.statusText}`);
         }
 
-        alert('Produto cadastrado com sucesso');
+        alert(`Produto ${operacao === "editar" ? "editado" : "cadastrado"} com sucesso!`);
     } catch (error) {
-        console.error('Erro ao cadastrar produto:', error);
+        console.error(`Erro ao ${operacao} produto:`, error);
     }
+}
+
+async function recuperaDadosProduto(idProduto) {
+    try {
+        const response = await fetch(`http://localhost:3000/produtos/${idProduto}`);
+        if (!response.ok) {
+            throw new Error(`Erro ao recuperar produto: ${response.statusText}`);
+        }
+        const dadosProduto = await response.json();
+        carregaDadosEditarNoFormulario(dadosProduto);
+    } catch (error) {
+        console.error('Erro ao recuperar produto:', error);
+    }
+}
+
+function carregaDadosEditarNoFormulario(produto) {
+    var form = document.getElementById("formCadastro");
+    
+    form.querySelectorAll("input, select").forEach((campo) => {
+        if (produto[campo.name]) {
+            campo.value = produto[campo.name];
+        }
+    });
 }
 
 function salvarProdutoNoLocalStorage(produto) {

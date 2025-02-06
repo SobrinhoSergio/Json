@@ -1,18 +1,11 @@
 {
   "produtos": [
     {
-      "id": 1,
-      "nome": "Teste Edição ",
-      "preco": "22",
-      "fabricante": "Bayer Edição",
-      "tipoUnidade": "litro"
-    },
-    {
       "id": 3,
       "nome": "Teste 2",
       "preco": "1",
       "fabricante": "Bayer",
-      "tipoUnidade": "quilo"
+      "tipoUnidade": "litro"
     },
     {
       "id": 4,

@@ -159,6 +159,15 @@
       "cor": "Branco",
       "valorVenda": "R$ 150000,00",
       "dataVenda": "2025-02-10T20:26:29.082Z"
+    },
+    {
+      "id": "BSTKN7TL",
+      "nome": "Sérgio",
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "cor": "Branco",
+      "valorVenda": "R$ 150000,00",
+      "dataVenda": "2025-02-10T23:05:57.879Z"
     }
   ]
 }

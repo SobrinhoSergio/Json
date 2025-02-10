@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
+    if (window.location.search.includes("idProduto=")) {
+        const idProduto = new URLSearchParams(window.location.search).get("idProduto");
+        if (idProduto) recuperaDadosVenda(idProduto);
+    }
+
     const campoMarca = document.getElementById("marca");
     const campoModelo = document.getElementById("modelo");
     const campoCor = document.getElementById("cor");
@@ -130,6 +135,7 @@ async function cadastrarEditarVenda(venda, operacao) {
     }
 }
 
+
 function gerarIdVenda() {
     return Math.random().toString(36).substr(2, 8).toUpperCase();
 }
@@ -156,6 +162,8 @@ function carregaDadosEditarNoFormulario(venda) {
         }
     });
 }
+
+
 
 function salvarVendaNoLocalStorage(venda) {
     let vendas = JSON.parse(localStorage.getItem("vendasTeste")) || [];

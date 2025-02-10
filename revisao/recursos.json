@@ -2,7 +2,7 @@
   "produtos": [
     {
       "id": 3,
-      "nome": "Sérgio",
+      "nome": "Sérgio teste 15:39",
       "preco": "1",
       "fabricante": "Bayer",
       "tipoUnidade": "litro"
@@ -80,6 +80,18 @@
       ],
       "dataVenda": "2025-02-04T23:34:07.660Z",
       "id": 5
+    },
+    {
+      "vendedor": "1",
+      "produtos": [
+        {
+          "idProduto": 3,
+          "subTotal": "90.00",
+          "quantidade": 90
+        }
+      ],
+      "dataVenda": "2025-02-06T13:44:24.274Z",
+      "id": 6
     }
   ]
 }

@@ -1,0 +1,164 @@
+{
+  "modelosCarros": [
+    {
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "valor": 150000,
+      "cores_disponiveis": [
+        "Branco",
+        "Preto",
+        "Prata",
+        "Azul"
+      ],
+      "id": "e44f"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Yaris",
+      "valor": 120000,
+      "cores_disponiveis": [
+        "Vermelho",
+        "Branco",
+        "Cinza"
+      ],
+      "id": "afc3"
+    },
+    {
+      "marca": "Honda",
+      "modelo": "Civic",
+      "valor": 160000,
+      "cores_disponiveis": [
+        "Vermelho",
+        "Cinza",
+        "Preto",
+        "Branco"
+      ],
+      "id": "f4c1"
+    },
+    {
+      "marca": "Honda",
+      "modelo": "HR-V",
+      "valor": 140000,
+      "cores_disponiveis": [
+        "Azul",
+        "Preto",
+        "Branco"
+      ],
+      "id": "de9a"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Mustang",
+      "valor": 350000,
+      "cores_disponiveis": [
+        "Amarelo",
+        "Preto",
+        "Vermelho"
+      ],
+      "id": "d067"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "EcoSport",
+      "valor": 110000,
+      "cores_disponiveis": [
+        "Prata",
+        "Preto",
+        "Branco"
+      ],
+      "id": "6dd1"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Onix",
+      "valor": 90000,
+      "cores_disponiveis": [
+        "Branco",
+        "Prata",
+        "Preto"
+      ],
+      "id": "0b23"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Tracker",
+      "valor": 130000,
+      "cores_disponiveis": [
+        "Vermelho",
+        "Cinza",
+        "Branco"
+      ],
+      "id": "1590"
+    },
+    {
+      "marca": "BMW",
+      "modelo": "320i",
+      "valor": 280000,
+      "cores_disponiveis": [
+        "Azul",
+        "Cinza",
+        "Branco",
+        "Preto"
+      ],
+      "id": "72b3"
+    },
+    {
+      "marca": "BMW",
+      "modelo": "X1",
+      "valor": 250000,
+      "cores_disponiveis": [
+        "Preto",
+        "Branco",
+        "Cinza"
+      ],
+      "id": "8929"
+    }
+  ],
+  "vendas": [
+    {
+      "nome": "João da Silva",
+      "marca": "Chevrolet",
+      "modelo": "Onix",
+      "cor": "Preto",
+      "valorVenda": "R$ 90.000,00",
+      "dataVenda": "2025-02-06T19:43:00.381Z",
+      "id": "T9TRMFx"
+    },
+    {
+      "nome": "Sérgio",
+      "marca": "Chevrolet",
+      "modelo": "Onix",
+      "cor": "Preto",
+      "valorVenda": "R$ 90.000,00",
+      "dataVenda": "2025-02-06T19:43:00.381Z",
+      "id": "T9TRMFx"
+    },
+    {
+      "id": "8SZFQ9B2",
+      "nome": "Sérgio",
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "cor": "Branco",
+      "valorVenda": "R$ 150000,00",
+      "dataVenda": "2025-02-09T00:53:16.326Z"
+    },
+    {
+      "id": "4KBIB8ZM",
+      "nome": "Hoje",
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "cor": "Branco",
+      "valorVenda": "R$ 150000,00",
+      "dataVenda": "2025-02-10T19:59:38.974Z"
+    },
+    {
+      "id": "LMTN051V",
+      "nome": "qswd",
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "cor": "Branco",
+      "valorVenda": "R$ 150000,00",
+      "dataVenda": "2025-02-10T20:26:29.082Z"
+    }
+  ]
+}

@@ -1,41 +1,58 @@
 document.addEventListener('DOMContentLoaded', async (ev) => {
     let campoNome = document.getElementById("nome");
+    let campoModelo = document.getElementById("modelo");
     const tabela = document.getElementById("tabelaVendas");
+
+    await carregarModelos();
 
     document.getElementById("btnFiltrar")?.addEventListener('click', async (ev) => {
         limparTabela(tabela);
-        carregaDadosTabela(campoNome.value);
+        carregaDadosTabela(campoNome.value, campoModelo.value);
         ev.preventDefault();
     });
-
-    // Exemplo de como pegar a data de hoje no formato ISO
-    let dataHoje = new Date().toISOString();
-    console.log("Data de hoje (ISO):", dataHoje);
-
-    // Exemplo de como transformar uma data ISO para o formato DD/MM/AAAA
-    let dataFormatada = new Date(dataHoje).toLocaleDateString("pt-BR");
-    console.log("Data de hoje formatada:", dataFormatada);
 });
 
-async function carregaDadosTabela(produtoParam) {
-    console.log(produtoParam);
+async function carregarModelos() {
     try {
-        const response = await fetch('http://localhost:3000/vendas' + (produtoParam !== '' ? '?nome_like=' + produtoParam : ''));
+        const response = await fetch('http://localhost:3000/vendas');
+        if (!response.ok) {
+            throw new Error(`Erro ao carregar modelos: ${response.statusText}`);
+        }
+        const data = await response.json();
+        const modelosUnicos = [...new Set(data.map(venda => venda.modelo))];
+        
+        const selectModelo = document.getElementById("modelo");
+        modelosUnicos.forEach(modelo => {
+            let option = document.createElement("option");
+            option.value = modelo;
+            option.textContent = modelo;
+            selectModelo.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Erro ao carregar modelos:', error);
+    }
+}
+
+async function carregaDadosTabela(produtoParam, modeloParam) {
+    try {
+        let url = 'http://localhost:3000/vendas?';
+        if (produtoParam) url += `nome_like=${produtoParam}&`;
+        if (modeloParam) url += `modelo_like=${modeloParam}`;
+
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Erro ao carregar produtos: ${response.statusText}`);
         }
         const data = await response.json();
-        console.log(data);
         data.forEach((venda) => {
-            console.log(venda.nome);
-            adicionaVenda(venda, produtoParam);
+            adicionaVenda(venda);
         });
     } catch (error) {
         console.error('Erro ao carregar vendas:', error);
     }
 }
 
-async function adicionaVenda(venda, produtoParam) {
+async function adicionaVenda(venda) {
     document.getElementById("tabelaVendas")?.querySelectorAll("tbody").forEach((corpoTabela) => {
         var linha = document.createElement("tr");
         var colunaVendedor = document.createElement("td");
@@ -45,7 +62,6 @@ async function adicionaVenda(venda, produtoParam) {
         var colunaSubTotal = document.createElement("td");
         colunaSubTotal.textContent = venda.valorVenda;
         
-        // Formatar a data no formato DD/MM/AAAA
         var colunaDataVenda = document.createElement("td");
         var dataFormatada = new Date(venda.dataVenda).toLocaleDateString("pt-BR");
         colunaDataVenda.textContent = dataFormatada;
@@ -82,10 +98,8 @@ function limparTabela(tabela) {
 
 async function removerProduto(produto, idLinhaARemover) {
     try {
-        // Remover o item do localStorage
         localStorage.removeItem('venda_' + produto.id);
 
-        // Realizar a exclusão via API
         const response = await fetch('http://localhost:3000/vendas/' + produto.id, {
             method: 'DELETE'
         });
@@ -94,14 +108,11 @@ async function removerProduto(produto, idLinhaARemover) {
         }
 
         alert("Produto excluído com sucesso!");
-
-        // Remover a linha da tabela
         document.getElementById(idLinhaARemover)?.remove();
     } catch (error) {
         console.error('Erro ao excluir venda:', error);
     }
 }
-
 
 async function editarProduto(produto) {
     try {

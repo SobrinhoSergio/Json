@@ -161,13 +161,13 @@
       "dataVenda": "2025-02-10T20:26:29.082Z"
     },
     {
-      "id": "BSTKN7TL",
+      "id": "S56AX66Y",
       "nome": "Sérgio",
-      "marca": "Toyota",
-      "modelo": "Corolla",
-      "cor": "Branco",
-      "valorVenda": "R$ 150000,00",
-      "dataVenda": "2025-02-10T23:05:57.879Z"
+      "marca": "BMW",
+      "modelo": "320i",
+      "cor": "Azul",
+      "valorVenda": "R$ 280000,00",
+      "dataVenda": "2025-02-10T23:39:20.667Z"
     }
   ]
 }

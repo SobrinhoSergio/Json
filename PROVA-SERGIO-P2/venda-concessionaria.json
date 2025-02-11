@@ -116,15 +116,6 @@
   ],
   "vendas": [
     {
-      "nome": "João da Silva",
-      "marca": "Chevrolet",
-      "modelo": "Onix",
-      "cor": "Preto",
-      "valorVenda": "R$ 90.000,00",
-      "dataVenda": "2025-02-06T19:43:00.381Z",
-      "id": "T9TRMFx"
-    },
-    {
       "nome": "Sérgio",
       "marca": "Chevrolet",
       "modelo": "Onix",
@@ -168,6 +159,15 @@
       "cor": "Azul",
       "valorVenda": "R$ 280000,00",
       "dataVenda": "2025-02-10T23:39:20.667Z"
+    },
+    {
+      "id": "K6HEZMCZ",
+      "nome": "Sérgio",
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "cor": "Branco",
+      "valorVenda": "R$ 150000,00",
+      "dataVenda": "2025-02-10T23:43:13.256Z"
     }
   ]
 }

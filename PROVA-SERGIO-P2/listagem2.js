@@ -98,7 +98,11 @@ function limparTabela(tabela) {
 
 async function removerProduto(produto, idLinhaARemover) {
     try {
-        localStorage.removeItem('venda_' + produto.id);
+
+        // Remove o produto do localStorage
+        let vendas = JSON.parse(localStorage.getItem("vendasTeste")) || [];
+        vendas = vendas.filter(v => v.id !== produto.id); // Remove o produto pelo ID
+        localStorage.setItem("vendasTeste", JSON.stringify(vendas));
 
         const response = await fetch('http://localhost:3000/vendas/' + produto.id, {
             method: 'DELETE'

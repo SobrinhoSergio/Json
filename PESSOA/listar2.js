@@ -170,16 +170,23 @@ function calcularIdade(nascimento) {
 
 // Função para excluir um item
 async function excluirItem(event) {
-  const id = event.target.dataset.id;
-
-  if (confirm("Tem certeza que deseja excluir este registro?")) {
-    await fetch(`${infoUrl}/${id}`, {
-      method: "DELETE",
-    });
-
-    fetchInfo(); // Atualiza a tabela após exclusão
-  }
+    const id = event.target.dataset.id;
+  
+    if (confirm("Tem certeza que deseja excluir este registro?")) {
+      // Excluir o item no servidor
+      await fetch(`${infoUrl}/${id}`, {
+        method: "DELETE",
+      });
+  
+      // Remove o item do localStorage
+      let pessoas = JSON.parse(localStorage.getItem("pessoaTeste")) || [];
+      pessoas = pessoas.filter(p => p.id !== parseInt(id)); // Filtra os itens que não possuem o ID
+      localStorage.setItem("pessoaTeste", JSON.stringify(pessoas));
+  
+      fetchInfo(); // Atualiza a tabela após exclusão
+    }
 }
+  
 
 // Função para editar um item - redireciona ao cadastro.html com o ID na URL
 function editarItem(event) {

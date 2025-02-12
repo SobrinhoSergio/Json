@@ -16,26 +16,10 @@
   "INFO": [
     {
       "nome": "João Silva",
-      "cpf": "3333",
-      "nascimento": "1999-02-19",
-      "sexo": "Masculino",
-      "endereco": "Japuíba",
-      "id": 3
-    },
-    {
-      "nome": "João Silva",
-      "cpf": "199.430.387-56",
-      "nascimento": "2025-01-15",
-      "sexo": "Masculino",
-      "endereco": "Japuíba",
-      "id": 4
-    },
-    {
-      "nome": "João Silva",
       "cpf": "112.111.111-11",
-      "nascimento": "2025-02-12",
+      "nascimento": "2000-02-12",
       "sexo": "Masculino",
-      "endereco": "Japuíba",
+      "endereco": "Japuíba0000",
       "id": 5
     },
     {
@@ -53,14 +37,6 @@
       "sexo": "Masculino",
       "endereco": "Friburgo",
       "id": 7
-    },
-    {
-      "nome": "Carlos Souza",
-      "cpf": "444.444.444-42",
-      "nascimento": "1988-04-12",
-      "sexo": "Feminino",
-      "endereco": "Europa2",
-      "id": 8
     }
   ]
 }

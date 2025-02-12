@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda Automóvel</title>
+    <script src="./cadastro.js"></script>
+</head>
+<body>
+    <div>
+        <menu>
+            <li><a href="index.html">Visualizar Vendas</a></li>
+            <li><a href="cadastro.html">Cadastrar Venda</a></li>
+        </menu>
+    </div>
+    <form id="formCadastro">
+        <fieldset>
+            <legend>Venda Automóvel</legend>
+            <input type="hidden" name="id" id="idVenda">
+            <label for="nome">Nome do Comprador:</label>&nbsp;<input type="text" name="nome" id="nome" placeholder="Nome">
+            <br/>
+            <label for="marca">Marca do Carro:</label>&nbsp;<select name="marca" id="marca">
+                <option value="">Selecione a marca do carro</option>
+            </select>
+            <br/>
+            <label for="modelo">Modelo do Carro:</label>&nbsp;<select name="modelo" id="modelo">
+                <option value="">Selecione o modelo do carro</option>
+            </select>
+            <br/>
+            <label for="cor">Cor do Carro:</label>&nbsp;<select name="cor" id="cor">
+                <option value="">Selecione a cor do carro</option>
+            </select>
+            <br/>
+            <label for="valor">Valor da Venda:</label>&nbsp;<input type="text" name="valor" id="valor" placeholder="Valor" disabled>
+            <br/>
+            <input type="hidden" name="valorVenda" id="valorVenda">
+            <button type="submit" id="btnCadastrar">Realizar Venda</button>
+        </fieldset>
+        
+    </form>
+</body>
+</html>

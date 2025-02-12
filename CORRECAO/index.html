@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./index.js"></script>
+</head>
+<body>
+    <div>
+        <menu>
+            <li><a href="index.html">Visualizar Vendas</a></li>
+            <li><a href="cadastro.html">Cadastrar Venda</a></li>
+        </menu>
+    </div>
+    
+    <form action="cadastro.html" id="formEditar">
+            <input type = "hidden" id = "idVenda" name = "idVenda">
+        <fieldset>
+            <legend>Filtros</legend>
+            <label for="nome">Nome do Comprador</label><input type="text" name="nome" id="nome" placeholder="Nome">&nbsp;
+        <button type="submit" id="btnFiltrar">Aplicar Filtro</button>
+        </fieldset>
+        
+    </form>
+    <table id = "tabelaVendasLista">
+        <thead>
+            <tr>
+                <th>Nome do Comprador</th>
+                <th>Modelo do Carro</th>
+                <th>Valor da Venda</th>
+                <th>Data da Venda</th>
+                <th colspan="2">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Informações</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="listar2.js"></script>
+</head>
+<body>
+  <h1>Lista de Informações</h1>
+
+  <div>
+    <label for="filtroNome">Filtrar por Nome:</label>
+    <select id="filtroNome">
+      <option value="">Todos os nomes</option>
+    </select>
+
+    <label for="filtroCpf">Filtrar por CPF:</label>
+    <input type="text" id="filtroCpf" placeholder="Digite o CPF">
+
+    <button id="filtrarBtn">Filtrar</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Data de Nascimento</th>
+        <th>Sexo</th>
+        <th>Endereço</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaBody">
+      <!-- Conteúdo dinâmico -->
+    </tbody>
+    <tfoot id="tabelaFooter">
+      <!-- Rodapé da tabela (onde as idades serão exibidas) -->
+    </tfoot>
+  </table>
+</body>
+</html>

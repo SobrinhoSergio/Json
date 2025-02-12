@@ -1,0 +1,87 @@
+/* Estilos Gerais */
+body {
+    background-color: #121212;
+    color: #E0E0E0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #BB86FC;
+}
+
+form {
+    background-color: #1E1E1E;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+input, select {
+    background-color: #2E2E2E;
+    color: #E0E0E0;
+}
+
+button {
+    background-color: #03DAC6;
+    color: #121212;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #018786;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #1E1E1E;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #333;
+    text-align: center;
+}
+
+th {
+    background-color: #BB86FC;
+    color: #121212;
+}
+
+td {
+    background-color: #2E2E2E;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    form {
+        max-width: 90%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalStorage e JSON Server</title>
+  <script defer src="LocalStorage.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    input, button {
+      margin: 5px 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cadastro de Dados</h1>
+  <form id="dataForm">
+    <input type="text" id="name" placeholder="Nome" required />
+    <input type="number" id="age" placeholder="Idade" required />
+    <button type="submit">Salvar no LocalStorage</button>
+  </form>
+
+  <h2>Dados Salvos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+      </tr>
+    </thead>
+    <tbody id="dataTable"></tbody>
+  </table>
+
+  <button id="sendToServer">Enviar para o JSON Server</button>
+</body>
+</html>

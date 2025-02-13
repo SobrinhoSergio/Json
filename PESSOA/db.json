@@ -29,14 +29,6 @@
       "sexo": "Masculino",
       "endereco": "Friburgo",
       "id": 6
-    },
-    {
-      "nome": "João Silva",
-      "cpf": "332.333.333-99",
-      "nascimento": "1999-08-08",
-      "sexo": "Masculino",
-      "endereco": "Friburgo",
-      "id": 7
     }
   ]
 }

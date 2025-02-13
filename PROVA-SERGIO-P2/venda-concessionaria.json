@@ -168,6 +168,33 @@
       "cor": "Vermelho",
       "valorVenda": "R$ 350000,00",
       "dataVenda": "2025-02-12T00:05:36.145Z"
+    },
+    {
+      "id": "T5klVtF",
+      "nome": "Sérgio",
+      "marca": "Toyota",
+      "modelo": "Yaris",
+      "cor": "Branco",
+      "valorVenda": "R$ 120000,00",
+      "dataVenda": "2025-02-12T19:21:45.589Z"
+    },
+    {
+      "id": "cZSDe4q",
+      "nome": "Academia",
+      "marca": "Chevrolet",
+      "modelo": "Tracker",
+      "cor": "Vermelho",
+      "valorVenda": "R$ 130000,00",
+      "dataVenda": "2025-02-12T23:26:50.729Z"
+    },
+    {
+      "id": "_pqmOUK",
+      "nome": "Hoje talvez",
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "cor": "Branco",
+      "valorVenda": "R$ 150000,00",
+      "dataVenda": "2025-02-12T23:27:20.792Z"
     }
   ]
 }

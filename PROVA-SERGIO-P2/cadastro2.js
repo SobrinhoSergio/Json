@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
-
     if (window.location.search.includes("idProduto=")) {
         const idProduto = new URLSearchParams(window.location.search).get("idProduto");
-        if (idProduto) recuperaDadosVenda(idProduto);
+        if (idProduto) await recuperaDadosVenda(idProduto);
     }
 
     const campoMarca = document.getElementById("marca");
@@ -36,21 +35,21 @@ async function carregarOpcoes(tipo, select, filtros = {}, campoValor = null) {
     try {
         let url = new URL('http://localhost:3000/modelosCarros');
         Object.keys(filtros).forEach(key => url.searchParams.append(key, filtros[key]));
-        
+
         const response = await fetch(url);
         if (!response.ok) throw new Error(`Erro ao carregar ${tipo}: ${response.statusText}`);
-        
+
         const data = await response.json();
-        
-        select.innerHTML = '';  
+
+        select.innerHTML = '';
         let optionInicial = new Option(`Selecione um ${tipo}`, "");
         select.add(optionInicial);
 
-        let opcoesAdicionadas = new Set(); // Para evitar valores repetidos
+        let opcoesAdicionadas = new Set();
 
         if (tipo === 'marca' || tipo === 'modelo') {
             data.forEach(item => {
-                if (!opcoesAdicionadas.has(item[tipo])) { // Evita adicionar repetidos
+                if (!opcoesAdicionadas.has(item[tipo])) {
                     let option = new Option(item[tipo], item[tipo]);
                     select.add(option);
                     opcoesAdicionadas.add(item[tipo]);
@@ -65,7 +64,6 @@ async function carregarOpcoes(tipo, select, filtros = {}, campoValor = null) {
                         opcoesAdicionadas.add(cor);
                     }
                 });
-                console.log(item.valor);
                 campoValor.value = item.valor || '';
             });
         }
@@ -74,13 +72,31 @@ async function carregarOpcoes(tipo, select, filtros = {}, campoValor = null) {
     }
 }
 
+async function recuperaDadosVenda(idProduto) {
+    try {
+        const response = await fetch(`http://localhost:3000/vendas/${idProduto}`);
+        if (!response.ok) throw new Error('Erro ao buscar dados da venda.');
+
+        const venda = await response.json();
+
+        // Preencher os campos do formulário com os dados da venda
+        document.getElementById("idVenda").value = venda.id;
+        document.getElementById("nome").value = venda.nome || '';
+        document.getElementById("marca").value = venda.marca || '';
+        document.getElementById("modelo").value = venda.modelo || '';
+        document.getElementById("cor").value = venda.cor || '';
+        document.getElementById("valorVenda").value = venda.valorVenda || '';
+    } catch (error) {
+        console.error('Erro ao recuperar dados da venda:', error);
+    }
+}
 
 function validaCampos(formElement) {
     let campos = ["nome", "marca", "modelo", "cor"];
     let valido = true;
     let informacoes = "";
 
-    let formData = new FormData(formElement); 
+    let formData = new FormData(formElement);
 
     campos.forEach((campo) => {
         if (!formData.has(campo) || formData.get(campo)?.toString().trim() === "") {
@@ -100,19 +116,13 @@ async function cadastrarEditarVenda(venda, operacao) {
     try {
         const vendaObj = Object.fromEntries(venda);
 
-        
         if (vendaObj.valorVenda) {
             vendaObj.valorVenda = `R$ ${parseFloat(vendaObj.valorVenda).toFixed(2).replace('.', ',')}`;
         } else {
-            vendaObj.valorVenda = "R$ 0,00"; 
+            vendaObj.valorVenda = "R$ 0,00";
         }
-        
-        vendaObj.dataVenda = new Date().toISOString(); 
-        vendaObj.id = vendaObj.id || gerarIdVenda(); 
 
-        if (operacao === "cadastrar") {
-            salvarVendaNoLocalStorage(vendaObj);
-        }
+        vendaObj.dataVenda = new Date().toISOString();
 
         const url = `http://localhost:3000/vendas${operacao === "editar" ? '/' + vendaObj.id : ''}`;
         const method = operacao === "editar" ? 'PUT' : 'POST';
@@ -130,50 +140,48 @@ async function cadastrarEditarVenda(venda, operacao) {
         }
 
         alert(`Venda ${operacao === "editar" ? "editada" : "cadastrada"} com sucesso!`);
+        window.location.reload();
     } catch (error) {
         console.error(`Erro ao ${operacao} venda:`, error);
     }
 }
 
-
-function gerarIdVenda() {
-    return Math.random().toString(36).substr(2, 8).toUpperCase();
-}
-
-async function recuperaDadosVenda(idVenda) {
-    try {
-        const response = await fetch(`http://localhost:3000/vendas/${idVenda}`);
-        if (!response.ok) {
-            throw new Error(`Erro ao recuperar venda: ${response.statusText}`);
-        }
-        const dadosVenda = await response.json();
-        carregaDadosEditarNoFormulario(dadosVenda);
-    } catch (error) {
-        console.error('Erro ao recuperar venda:', error);
-    }
-}
-
-function carregaDadosEditarNoFormulario(venda) {
-    var form = document.getElementById("formCadastro");
-    
-    form.querySelectorAll("input, select").forEach((campo) => {
-        if (venda[campo.name]) {
-            campo.value = venda[campo.name];
-        }
-    });
-}
-
-
-
-function salvarVendaNoLocalStorage(venda) {
-    let vendas = JSON.parse(localStorage.getItem("vendasTeste")) || [];
-    vendas.push(venda);
-    localStorage.setItem("vendasTeste", JSON.stringify(vendas));
-}
-
 function carregarVendasDoLocalStorage() {
-    let vendas = JSON.parse(localStorage.getItem("vendasTeste")) || [];
-    vendas.forEach(venda => {
-        console.log("Venda carregada do LocalStorage:", venda);
+    const vendas = JSON.parse(localStorage.getItem("vendasTeste")) || [];
+    vendas.forEach((venda) => {
+        adicionaVendaNaTabela(venda);
     });
+}
+
+function adicionaVendaNaTabela(venda) {
+    const tabela = document.getElementById("tabelaVendas").querySelector("tbody");
+    const linha = document.createElement("tr");
+
+    linha.innerHTML = `
+        <td>${venda.nome}</td>
+        <td>${venda.marca}</td>
+        <td>${venda.modelo}</td>
+        <td>${venda.cor}</td>
+        <td>${venda.valorVenda}</td>
+        <td>
+            <a href="?idProduto=${venda.id}">Editar</a>
+        </td>
+        <td>
+            <a href="#" onclick="removerProduto('${venda.id}', this)">Remover</a>
+        </td>
+    `;
+
+    tabela.appendChild(linha);
+}
+
+async function removerProduto(idProduto, elemento) {
+    try {
+        const response = await fetch(`http://localhost:3000/vendas/${idProduto}`, { method: 'DELETE' });
+        if (!response.ok) throw new Error('Erro ao remover produto.');
+
+        alert('Produto removido com sucesso!');
+        elemento.closest('tr').remove();
+    } catch (error) {
+        console.error('Erro ao remover produto:', error);
+    }
 }
